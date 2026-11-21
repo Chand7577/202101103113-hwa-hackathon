@@ -83,11 +83,53 @@ export default function GooeyNav({ onShopClick, isShopOpen }: GooeyNavProps) {
 
   const currentIndex = hoverIndex !== null ? hoverIndex : activeIndex
 
-  // Update active index based on route
+  // ScrollSpy: Automatically glide the bone indicator to the active section on scroll
   useEffect(() => {
     if (pathname.startsWith('/products')) {
       setActiveIndex(0)
+      return
     }
+
+    const sections = [
+      { id: 'features', index: 1 },
+      { id: 'levels', index: 2 },
+      { id: 'how-it-works', index: 3 },
+      { id: 'testimonials', index: 4 },
+    ]
+
+    const handleScroll = () => {
+      // If near top of page (hero), stay on Shop Tower
+      if (window.scrollY < 300) {
+        setActiveIndex(0)
+        return
+      }
+
+      // If scrolled near bottom of page, activate last item (Reviews)
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 100
+      ) {
+        setActiveIndex(4)
+        return
+      }
+
+      // Check section bounding rects from bottom to top
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const item = sections[i]
+        const el = document.getElementById(item.id)
+        if (el) {
+          const rect = el.getBoundingClientRect()
+          if (rect.top <= 240 && rect.bottom > 100) {
+            setActiveIndex(item.index)
+            return
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [pathname])
 
   // Reposition the gooey active indicator
