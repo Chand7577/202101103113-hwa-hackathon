@@ -1,4 +1,4 @@
-import Hero from '@/components/hero'
+import Hero from '@/components/hero-26'
 import Features from '@/components/features'
 import LevelsShowcase from '@/components/levels-showcase'
 import HowItWorks from '@/components/how-it-works'
