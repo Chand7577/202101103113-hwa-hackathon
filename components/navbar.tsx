@@ -21,21 +21,21 @@ export default function Navbar() {
             <span className="text-xl font-bold text-foreground tracking-tight">Sniff &amp; Solve</span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-6">
-            <Link href="#features" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+          <div className="hidden md:flex items-center gap-4 lg:gap-6">
+            <Link href="#features" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap">
               Features
             </Link>
-            <Link href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Link href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap">
               How It Works
             </Link>
-            <Link href="#testimonials" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Link href="#testimonials" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap">
               Testimonials
             </Link>
-            <Link href="#faq" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors">
+            <Link href="#faq" className="text-sm font-medium text-muted-foreground hover:text-primary transition-colors whitespace-nowrap">
               FAQ
             </Link>
-            <Button asChild>
-              <Link href="#" className="w-full">
+            <Button asChild variant="default" size="lg" className="whitespace-nowrap">
+              <Link href="#" className="flex items-center justify-center w-full">
                 Order Now
               </Link>
             </Button>

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { Button } from '@/components/ui/button'
 import { ArrowRight, PawPrint, Zap, Flame, Shield } from 'lucide-react'
 
 export default function Hero() {
@@ -33,12 +34,16 @@ export default function Hero() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <Link href="#" className="btn-primary flex items-center justify-center gap-2 px-8 py-4 text-lg">
-                Order Now <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link href="#how-it-works" className="px-8 py-4 text-lg rounded-xl bg-secondary text-secondary-foreground font-medium hover:bg-secondary/80 transition-all">
-                How It Works
-              </Link>
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <Link href="#" className="flex items-center justify-center gap-2 w-full">
+                  Order Now <ArrowRight className="w-5 h-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
+                <Link href="#how-it-works" className="flex items-center justify-center w-full">
+                  How It Works
+                </Link>
+              </Button>
             </div>
 
             <div className="mt-10 flex items-center gap-4 text-sm text-muted-foreground">
