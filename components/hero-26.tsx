@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useCart, DEFAULT_PRODUCT } from '@/lib/cart-context'
 import SpecularButton from '@/components/specular-button'
+import RotatingText from '@/components/rotating-text'
 import {
   ArrowRight, ShieldCheck, Clock,
   Heart, Brain, ShoppingCart, Star, CheckCircle2,
@@ -123,10 +124,26 @@ export default function Hero26() {
             Independent Canine Enrichment
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-[58px] font-black text-white tracking-tight leading-[1.06]">
+          <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-black text-white tracking-tight leading-[1.08]">
             Keeps your dog<br />
-            <span className="text-blue-400">
-              happy while away.
+            <span className="inline-flex items-center mt-1">
+              <RotatingText
+                texts={[
+                  'happy while away.',
+                  'calm & focused.',
+                  'mentally engaged.',
+                  'free from anxiety.',
+                ]}
+                effect="slide"
+                direction="up"
+                highlight={true}
+                highlightColor="#2563eb"
+                staggerFrom="last"
+                staggerDuration={0.02}
+                splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1"
+                rotationInterval={2600}
+                mainClassName="rounded-2xl px-3 py-1 font-black text-white"
+              />
             </span>
           </h1>
 
