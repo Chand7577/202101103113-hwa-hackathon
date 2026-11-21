@@ -21,7 +21,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col font-sans antialiased bg-slate-50/50 text-slate-900">
         <CartProvider>
           <Navbar />
-          <main className="flex-grow pt-28">{children}</main>
+          <main className="flex-grow pt-24">{children}</main>
           <Footer />
           <CartDrawer />
         </CartProvider>

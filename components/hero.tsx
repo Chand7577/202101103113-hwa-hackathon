@@ -10,7 +10,6 @@ import {
   Truck,
   RotateCcw,
   Star,
-  Sparkles,
   Clock,
   Heart,
   Brain,
@@ -30,237 +29,231 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/60 to-slate-100/40 pt-4 pb-20 lg:pt-8 lg:pb-28">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-slate-50/50 to-slate-100/30 flex flex-col justify-center min-h-[calc(100vh-6rem)] lg:h-[calc(100vh-6rem)] py-2 lg:py-3 px-4 sm:px-6 lg:px-8">
       {/* Ambient Radial Backdrop Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-gradient-to-tr from-blue-100/60 via-indigo-100/40 to-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-tr from-blue-100/50 via-indigo-100/30 to-amber-100/30 rounded-full blur-3xl pointer-events-none -z-10" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto w-full flex flex-col justify-between h-full py-1">
         
-        {/* TOP CENTER: Eye-Catching Title & Eyebrow */}
-        <div className="text-center max-w-3xl mx-auto space-y-3 mb-10 lg:mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-xs sm:text-sm font-bold shadow-2xs">
-            <Home className="w-4 h-4 text-blue-600" />
+        {/* TOP: Compact Headline & Eyebrow */}
+        <div className="text-center max-w-2xl mx-auto space-y-1 sm:space-y-1.5 shrink-0">
+          <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-[11px] font-bold shadow-2xs">
+            <Home className="w-3.5 h-3.5 text-blue-600" />
             <span>Independent Canine Solo Enrichment</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.14]">
+          <h1 className="text-2xl sm:text-3xl lg:text-[40px] font-black text-slate-900 tracking-tight leading-[1.12]">
             Keep Your Dog Happily Engaged{' '}
-            <span className="text-blue-600 underline decoration-blue-200 decoration-wavy underline-offset-8">
+            <span className="text-blue-600 underline decoration-blue-200 decoration-wavy underline-offset-4">
               While You’re Away.
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
-            The modular 4-tier puzzle tower engineered to turn anxious alone-time into hours of calm, independent mental focus. No pacing. No barking. Zero chewed furniture.
+          <p className="text-xs sm:text-[13px] text-slate-500 max-w-lg mx-auto leading-snug">
+            The modular 4-tier puzzle tower that turns anxious alone-time into calm, independent mental focus. No pacing. No barking. Zero chewed furniture.
           </p>
         </div>
 
-        {/* CENTERPIECE HERO CONTAINER WITH SURROUNDING FLOATING INFO */}
-        <div className="relative max-w-5xl mx-auto">
-          
-          {/* DESKTOP FLOATING CALLOUTS AROUND THE CENTER IMAGE */}
-          <div className="grid lg:grid-cols-12 gap-8 items-center">
+        {/* CENTER: Compact Hero Grid (Photo + 4 Surrounding Cards) */}
+        <div className="my-auto py-2">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-center max-w-5xl mx-auto">
             
-            {/* LEFT COLUMN: Solves Separation Stress & Long-Duration Engagement (3 cols) */}
-            <div className="lg:col-span-3 space-y-6 order-2 lg:order-1">
-              
-              {/* TOP LEFT CARD: Solves Separation Anxiety */}
-              <div className="p-5 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-md hover:shadow-lg transition-all group">
-                <div className="flex items-center gap-3 mb-2.5">
-                  <div className="w-10 h-10 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xs">
-                    <Heart className="w-5 h-5 text-rose-500" />
+            {/* LEFT COLUMN: 2 Cards (3 cols) */}
+            <div className="lg:col-span-3 space-y-2.5 order-2 lg:order-1">
+              {/* TOP LEFT CARD */}
+              <div className="p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xs hover:shadow-sm transition-all group">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-7 h-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+                    <Heart className="w-3.5 h-3.5 text-rose-500" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-blue-600 block">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-blue-600 block">
                       Alone-Time Relief
                     </span>
-                    <h3 className="text-sm font-black text-slate-900 leading-tight">
+                    <h3 className="text-xs font-black text-slate-900 leading-tight">
                       Calms Separation Stress
                     </h3>
                   </div>
                 </div>
-                <div className="text-2xl font-black text-slate-900">
-                  94% <span className="text-xs font-bold text-slate-500">Less Anxiety</span>
+                <div className="text-base font-black text-slate-900 leading-tight">
+                  94% <span className="text-[10px] font-bold text-slate-400">Less Anxiety</span>
                 </div>
-                <p className="text-xs text-slate-500 mt-1 leading-snug">
-                  Natural olfactory foraging triggers soothing serotonin and dopamine so your pup stays relaxed after you leave.
+                <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">
+                  Olfactory foraging triggers calming serotonin so pups settle peacefully.
                 </p>
               </div>
 
-              {/* BOTTOM LEFT CARD: Multi-Hour Solo Engagement */}
-              <div className="p-5 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-md hover:shadow-lg transition-all group">
-                <div className="flex items-center gap-3 mb-2.5">
-                  <div className="w-10 h-10 rounded-2xl bg-cyan-50 text-cyan-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xs">
-                    <Clock className="w-5 h-5" />
+              {/* BOTTOM LEFT CARD */}
+              <div className="p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xs hover:shadow-sm transition-all group">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-7 h-7 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center shrink-0">
+                    <Clock className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-cyan-600 block">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-cyan-600 block">
                       Solo Duration
                     </span>
-                    <h3 className="text-sm font-black text-slate-900 leading-tight">
+                    <h3 className="text-xs font-black text-slate-900 leading-tight">
                       Engrossed for Hours
                     </h3>
                   </div>
                 </div>
-                <div className="text-2xl font-black text-slate-900">
-                  45–90+ <span className="text-xs font-bold text-slate-500">Mins Focus</span>
+                <div className="text-base font-black text-slate-900 leading-tight">
+                  45–90+ <span className="text-[10px] font-bold text-slate-400">Mins Focus</span>
                 </div>
-                <p className="text-xs text-slate-500 mt-1 leading-snug">
-                  Sequential puzzle levels pace reward release tier by tier, keeping active dogs engrossed rather than waiting by the door.
+                <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">
+                  Progressive tiers pace rewards, keeping dogs active instead of waiting by the door.
                 </p>
               </div>
-
             </div>
 
-            {/* CENTER COLUMN: Flagship Studio Photo (6 cols) */}
-            <div className="lg:col-span-6 flex flex-col items-center order-1 lg:order-2">
-              <div className="relative w-full max-w-md aspect-square rounded-3xl bg-white p-4 border border-slate-200/90 shadow-2xl overflow-hidden group">
-                
+            {/* CENTER COLUMN: Central Product Photo (6 cols) */}
+            <div className="lg:col-span-6 flex flex-col items-center justify-center order-1 lg:order-2">
+              <div className="relative w-52 h-52 sm:w-60 sm:h-60 lg:w-[270px] lg:h-[270px] rounded-3xl bg-white p-3 border border-slate-200/90 shadow-xl overflow-hidden group">
                 {/* Product Image */}
                 <img
                   src="/images/sniff-solve-tower-hero.jpg"
                   alt="Sniff & Solve Tower 4-Level Dog Puzzle"
-                  className="w-full h-full object-contain rounded-2xl group-hover:scale-[1.03] transition-transform duration-500"
+                  className="w-full h-full object-contain rounded-2xl group-hover:scale-105 transition-transform duration-300"
                 />
 
                 {/* Overlaid Badges */}
-                <div className="absolute top-5 left-5 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm border border-slate-200 text-xs font-black text-slate-900 flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full shadow-2xs border border-slate-200 text-[10px] font-black text-slate-900 flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                   <span>Safe for Solo Play</span>
                 </div>
 
-                <div className="absolute bottom-5 right-5 bg-slate-900/90 text-white backdrop-blur-md px-3.5 py-1 rounded-full text-xs font-bold tracking-wide">
+                <div className="absolute bottom-3 right-3 bg-slate-900/90 text-white backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wide">
                   $69.00 • Free Delivery
                 </div>
               </div>
 
-              {/* Bottom Rating Indicator */}
-              <div className="flex items-center gap-2 mt-4 px-4 py-1.5 rounded-full bg-white/80 border border-slate-200 shadow-2xs text-xs font-bold text-slate-700">
+              {/* Rating Pill */}
+              <div className="flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-white/90 border border-slate-200 shadow-2xs text-[11px] font-bold text-slate-700">
                 <div className="flex text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                    <Star key={i} className="w-3 h-3 fill-current" />
                   ))}
                 </div>
-                <span>4.9 / 5 Rating</span>
-                <span className="text-slate-400">•</span>
-                <span className="text-slate-500 font-medium">Over 2,450+ Happy Home-Alone Dogs</span>
+                <span>4.9/5</span>
+                <span className="text-slate-300">•</span>
+                <span className="text-slate-500 font-medium">2,450+ Happy Dogs</span>
               </div>
             </div>
 
-            {/* RIGHT COLUMN: Safe Solo Play & Peaceful Home (3 cols) */}
-            <div className="lg:col-span-3 space-y-6 order-3">
-              
-              {/* TOP RIGHT CARD: Eliminates Destructive Chewing */}
-              <div className="p-5 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-md hover:shadow-lg transition-all group">
-                <div className="flex items-center gap-3 mb-2.5">
-                  <div className="w-10 h-10 rounded-2xl bg-purple-50 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xs">
-                    <Brain className="w-5 h-5" />
+            {/* RIGHT COLUMN: 2 Cards (3 cols) */}
+            <div className="lg:col-span-3 space-y-2.5 order-3">
+              {/* TOP RIGHT CARD */}
+              <div className="p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xs hover:shadow-sm transition-all group">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center shrink-0">
+                    <Brain className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-purple-600 block">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-purple-600 block">
                       Mental Exercise
                     </span>
-                    <h3 className="text-sm font-black text-slate-900 leading-tight">
+                    <h3 className="text-xs font-black text-slate-900 leading-tight">
                       Curb Boredom Chewing
                     </h3>
                   </div>
                 </div>
-                <div className="text-2xl font-black text-slate-900">
-                  15 Min <span className="text-xs font-bold text-slate-500">= 45-Min Walk</span>
+                <div className="text-base font-black text-slate-900 leading-tight">
+                  15 Min <span className="text-[10px] font-bold text-slate-400">= 45-Min Walk</span>
                 </div>
-                <p className="text-xs text-slate-500 mt-1 leading-snug">
-                  Channels pent-up physical drive into brain-work. Prevents couch digging, shoe destruction, and stress barking.
+                <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">
+                  Tires out hyperactive drives to prevent shoe destruction and barking.
                 </p>
               </div>
 
-              {/* BOTTOM RIGHT CARD: Safe for Solo Unsupervised Play */}
-              <div className="p-5 rounded-3xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-md hover:shadow-lg transition-all group">
-                <div className="flex items-center gap-3 mb-2.5">
-                  <div className="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform shadow-2xs">
-                    <ShieldCheck className="w-5 h-5" />
+              {/* BOTTOM RIGHT CARD */}
+              <div className="p-3.5 rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-xs hover:shadow-sm transition-all group">
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+                    <ShieldCheck className="w-3.5 h-3.5" />
                   </div>
                   <div>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 block">
+                    <span className="text-[9px] font-extrabold uppercase tracking-wider text-emerald-600 block">
                       Guilt-Free Leaving
                     </span>
-                    <h3 className="text-sm font-black text-slate-900 leading-tight">
+                    <h3 className="text-xs font-black text-slate-900 leading-tight">
                       Safe Solo Design
                     </h3>
                   </div>
                 </div>
-                <div className="text-2xl font-black text-slate-900">
-                  100% <span className="text-xs font-bold text-slate-500">Non-Tip Base</span>
+                <div className="text-base font-black text-slate-900 leading-tight">
+                  100% <span className="text-[10px] font-bold text-slate-400">Non-Tip Base</span>
                 </div>
-                <p className="text-xs text-slate-500 mt-1 leading-snug">
-                  Heavy silicone grip base won’t flip over. Rounded edges and non-toxic materials mean zero worries while you&apos;re out.
+                <p className="text-[11px] text-slate-500 mt-0.5 leading-tight">
+                  Heavy silicone grip base won’t flip over. Zero pinch points for safe play.
                 </p>
               </div>
-
             </div>
 
           </div>
+        </div>
 
-          {/* CENTER BOTTOM: Clean Premium CTA Bar */}
-          <div className="mt-12 max-w-2xl mx-auto p-4 sm:p-5 rounded-3xl bg-white border border-slate-200/90 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-center sm:text-left space-y-0.5">
-              <div className="flex items-baseline justify-center sm:justify-start gap-2.5">
-                <span className="text-3xl font-black text-slate-900">$69.00</span>
-                <span className="text-base text-slate-400 line-through">$89.00</span>
-                <span className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
-                  Save $20 Today
+        {/* BOTTOM: Compact CTA & Price Pill Bar */}
+        <div className="shrink-0 max-w-xl mx-auto w-full pt-1">
+          <div className="p-3 rounded-2xl bg-white border border-slate-200/90 shadow-md flex items-center justify-between gap-4">
+            <div className="space-y-0.5 pl-1">
+              <div className="flex items-baseline gap-2">
+                <span className="text-2xl font-black text-slate-900 leading-none">$69.00</span>
+                <span className="text-xs text-slate-400 line-through leading-none">$89.00</span>
+                <span className="text-[10px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.2 rounded-full">
+                  Save $20
                 </span>
               </div>
-              <p className="text-xs text-slate-500 font-medium">
-                Free Express Delivery (Orders over $50) • 30-Day Money-Back
+              <p className="text-[10px] text-slate-500 font-medium leading-none">
+                Free Express Delivery • 30-Day Money-Back
               </p>
             </div>
 
-            <div className="flex items-center gap-3 w-full sm:w-auto">
+            <div className="flex items-center gap-2">
               <Button
                 asChild
-                size="lg"
-                className="flex-1 sm:flex-none bg-blue-600 hover:bg-blue-700 text-white font-extrabold h-12 px-7 rounded-2xl shadow-md shadow-blue-500/25 transition-all flex items-center justify-center gap-2"
+                size="sm"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs h-9 px-5 rounded-xl shadow-xs transition-all flex items-center gap-1.5"
               >
                 <Link href="/products/sniff-solve-tower">
                   <span>Order Tower</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </Button>
 
               <Button
                 type="button"
                 variant="outline"
-                size="lg"
+                size="sm"
                 onClick={handleQuickAdd}
-                className="h-12 px-4 rounded-2xl border-slate-200 hover:bg-slate-50 flex items-center justify-center text-slate-700"
+                className="h-9 px-2.5 rounded-xl border-slate-200 hover:bg-slate-50 text-slate-700"
                 aria-label="Quick Add to Cart"
               >
-                <ShoppingCart className="w-5 h-5 text-blue-600" />
+                <ShoppingCart className="w-4 h-4 text-blue-600" />
               </Button>
             </div>
           </div>
 
           {isAdded && (
-            <div className="mt-3 text-center text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 py-2 px-4 rounded-xl max-w-sm mx-auto animate-in fade-in">
+            <div className="mt-1.5 text-center text-[11px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 py-1 px-3 rounded-lg animate-in fade-in">
               ✓ Added to cart! Check your bag above to proceed.
             </div>
           )}
 
-          {/* Trust Guarantees */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-500 font-medium">
-            <span className="flex items-center gap-1.5">
-              <Truck className="w-4 h-4 text-blue-600" /> Free 2-3 Day Shipping
+          {/* Single-line Trust Signals */}
+          <div className="flex items-center justify-center gap-4 text-[10px] text-slate-400 font-medium pt-1.5">
+            <span className="flex items-center gap-1">
+              <Truck className="w-3 h-3 text-blue-500" /> Free 2-3 Day Shipping
             </span>
             <span>•</span>
-            <span className="flex items-center gap-1.5">
-              <RotateCcw className="w-4 h-4 text-emerald-600" /> 30-Day Risk-Free Trial
+            <span className="flex items-center gap-1">
+              <RotateCcw className="w-3 h-3 text-emerald-500" /> 30-Day Trial
             </span>
             <span>•</span>
-            <span className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-indigo-600" /> 100% Non-Toxic Polymer
+            <span className="flex items-center gap-1">
+              <ShieldCheck className="w-3 h-3 text-indigo-500" /> 100% Non-Toxic Polymer
             </span>
           </div>
-
         </div>
 
       </div>
