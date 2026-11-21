@@ -162,7 +162,7 @@ export default function OrderConfirmationPage() {
                       </div>
                     </div>
                     <span className="text-sm font-bold text-slate-900">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₹{(item.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -171,16 +171,16 @@ export default function OrderConfirmationPage() {
                   <div className="flex justify-between text-slate-600">
                     <span>Shipping</span>
                     <span className="font-semibold text-slate-900">
-                      {order.shippingCost === 0 ? 'FREE' : `$${order.shippingCost.toFixed(2)}`}
+                      {order.shippingCost === 0 ? 'FREE' : `₹${order.shippingCost.toFixed(2)}`}
                     </span>
                   </div>
                   <div className="flex justify-between text-slate-600">
                     <span>Tax</span>
-                    <span className="font-semibold text-slate-900">${order.taxCost.toFixed(2)}</span>
+                    <span className="font-semibold text-slate-900">₹{order.taxCost.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between font-bold text-sm text-slate-900 pt-2 border-t border-slate-100">
                     <span>Total Paid</span>
-                    <span className="text-blue-600">${order.total.toFixed(2)}</span>
+                    <span className="text-blue-600">₹{order.total.toFixed(2)}</span>
                   </div>
                 </div>
               </div>

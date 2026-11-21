@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useCart, DEFAULT_PRODUCT } from '@/lib/cart-context'
+import SpecularButton from '@/components/specular-button'
 import {
   ArrowRight, ShieldCheck, Clock,
   Heart, Brain, ShoppingCart, Star, CheckCircle2,
@@ -134,26 +135,49 @@ export default function Hero26() {
           </p>
 
           <div className="flex items-baseline gap-3">
-            <span className="text-5xl font-black text-white">$69</span>
-            <span className="text-slate-500 line-through text-xl">$89</span>
+            <span className="text-5xl font-black text-white">₹69</span>
+            <span className="text-slate-500 line-through text-xl">₹89</span>
             <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full">
-              Save $20
+              Save ₹20
             </span>
           </div>
 
           <div className="flex items-center gap-3 flex-wrap">
-            <Link
-              href="/products/sniff-solve-tower"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white bg-blue-600 hover:bg-blue-500 transition-colors"
-            >
-              Order Tower <ArrowRight className="w-4 h-4" />
+            <Link href="/products/sniff-solve-tower">
+              <SpecularButton
+                size="md"
+                radius={14}
+                tint="#2563eb"
+                tintOpacity={1}
+                textColor="#ffffff"
+                lineColor="#bfdbfe"
+                baseColor="#1d4ed8"
+                intensity={1.2}
+                followMouse
+                proximity={220}
+                className="font-bold text-sm h-12 px-6 shadow-lg shadow-blue-500/25"
+              >
+                <span>Order Tower</span>
+                <ArrowRight className="w-4 h-4 ml-1" />
+              </SpecularButton>
             </Link>
-            <button
+            <SpecularButton
+              size="md"
+              radius={14}
+              tint="#1e293b"
+              tintOpacity={0.65}
+              textColor="#cbd5e1"
+              lineColor="#94a3b8"
+              baseColor="#334155"
+              intensity={0.9}
+              followMouse
+              proximity={200}
               onClick={handleQuickAdd}
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-xl font-bold text-sm text-slate-300 border border-white/10 hover:border-white/20 transition-colors bg-white/5"
+              className="font-bold text-sm h-12 px-5 border border-white/10"
             >
-              <ShoppingCart className="w-4 h-4" /> Quick Add
-            </button>
+              <ShoppingCart className="w-4 h-4 mr-1 text-blue-400" />
+              <span>Quick Add</span>
+            </SpecularButton>
           </div>
 
           {isAdded && (

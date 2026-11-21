@@ -105,7 +105,7 @@ export default function CartPage() {
                 onClick={() => addItem(DEFAULT_PRODUCT, 1)}
                 className="border-slate-300 rounded-xl"
               >
-                Quick Add 1 Tower ($69)
+                Quick Add 1 Tower (₹69)
               </Button>
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function CartPage() {
                     <Truck className="w-4 h-4 text-blue-600" />
                     {subtotal >= freeShippingThreshold
                       ? '🎉 You unlocked Free Express Shipping!'
-                      : `Add $${freeShippingDiff.toFixed(2)} more to qualify for Free Shipping`}
+                      : `Add ₹${freeShippingDiff.toFixed(2)} more to qualify for Free Shipping`}
                   </span>
                   <span className="text-slate-500 font-bold">{Math.round(freeShippingProgress)}%</span>
                 </div>
@@ -173,11 +173,11 @@ export default function CartPage() {
 
                       <div className="flex items-baseline gap-2 pt-1">
                         <span className="text-base font-extrabold text-blue-600">
-                          ${item.price.toFixed(2)}
+                          ₹{item.price.toFixed(2)}
                         </span>
                         {item.originalPrice && (
                           <span className="text-xs text-slate-400 line-through">
-                            ${item.originalPrice.toFixed(2)}
+                            ₹{item.originalPrice.toFixed(2)}
                           </span>
                         )}
                         <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
@@ -212,7 +212,7 @@ export default function CartPage() {
                         <div className="text-right">
                           <span className="text-xs text-slate-400 block">Total</span>
                           <span className="text-base font-bold text-slate-900">
-                            ${(item.price * item.quantity).toFixed(2)}
+                            ₹{(item.price * item.quantity).toFixed(2)}
                           </span>
                         </div>
                       </div>
@@ -254,7 +254,7 @@ export default function CartPage() {
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between text-slate-600">
                     <span>Subtotal ({totalItems} items)</span>
-                    <span className="font-semibold text-slate-900">${subtotal.toFixed(2)}</span>
+                    <span className="font-semibold text-slate-900">₹{subtotal.toFixed(2)}</span>
                   </div>
 
                   <div className="flex justify-between text-slate-600">
@@ -262,7 +262,7 @@ export default function CartPage() {
                       <span>Shipping</span>
                       {shipping === 0 && (
                         <span className="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">
-                          Free Over $50
+                          Free Over ₹500
                         </span>
                       )}
                     </span>
@@ -270,7 +270,7 @@ export default function CartPage() {
                       {shipping === 0 ? (
                         <span className="text-emerald-600">FREE</span>
                       ) : (
-                        `$${shipping.toFixed(2)}`
+                        `₹${shipping.toFixed(2)}`
                       )}
                     </span>
                   </div>
@@ -278,22 +278,22 @@ export default function CartPage() {
                   {discountAmount > 0 && (
                     <div className="flex justify-between text-emerald-600 font-semibold">
                       <span>Discount ({discountPercent}%)</span>
-                      <span>-${discountAmount.toFixed(2)}</span>
+                      <span>-₹{discountAmount.toFixed(2)}</span>
                     </div>
                   )}
 
                   <div className="flex justify-between text-slate-600">
                     <span>Estimated Sales Tax</span>
-                    <span className="font-semibold text-slate-900">${tax.toFixed(2)}</span>
+                    <span className="font-semibold text-slate-900">₹{tax.toFixed(2)}</span>
                   </div>
 
                   <div className="border-t border-slate-200 pt-4 flex justify-between items-baseline">
                     <div>
                       <span className="text-base font-bold text-slate-900">Total</span>
-                      <span className="text-xs text-slate-400 block font-normal">USD (incl. tax)</span>
+                      <span className="text-xs text-slate-400 block font-normal">INR (incl. tax)</span>
                     </div>
                     <span className="text-2xl font-black text-blue-600">
-                      ${finalTotal.toFixed(2)}
+                      ₹{finalTotal.toFixed(2)}
                     </span>
                   </div>
                 </div>

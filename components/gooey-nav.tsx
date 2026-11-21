@@ -18,12 +18,46 @@ interface GooeyNavProps {
   isShopOpen?: boolean
 }
 
+// Helper to calculate a continuous, authentic dog bone vector path with 4 distinct condyles and central waist
+function getBonePath(w: number, h: number = 40): string {
+  const width = Math.max(w, 90)
+  const ym = h / 2 // 20
+  const notchL = 10
+  const notchR = width - 10
+  const clx = 14
+  const crx = width - 14
+  const yt = 11.5
+  const yb = 28.5
+  const shaftT = 9
+  const shaftB = 31
+
+  return `
+    M ${notchL} ${ym}
+    C ${notchL - 3} ${ym + 3}, 4.5 ${yb - 4}, 4.5 ${yb}
+    C 4.5 ${yb + 5.5}, 9 ${yb + 9}, ${clx} ${yb + 9}
+    C 19.5 ${yb + 9}, 23 ${shaftB + 2}, 28 ${shaftB}
+    L ${width - 28} ${shaftB}
+    C ${width - 23} ${shaftB + 2}, ${crx - 5.5} ${yb + 9}, ${crx} ${yb + 9}
+    C ${crx + 5.5} ${yb + 9}, ${width - 4.5} ${yb + 5.5}, ${width - 4.5} ${yb}
+    C ${width - 4.5} ${yb - 4}, ${notchR + 3} ${ym + 3}, ${notchR} ${ym}
+    C ${notchR + 3} ${ym - 3}, ${width - 4.5} ${yt + 4}, ${width - 4.5} ${yt}
+    C ${width - 4.5} ${yt - 5.5}, ${crx + 5.5} ${yt - 9}, ${crx} ${yt - 9}
+    C ${crx - 5.5} ${yt - 9}, ${width - 23} ${shaftT - 2}, ${width - 28} ${shaftT}
+    L 28 ${shaftT}
+    C 23 ${shaftT - 2}, 19.5 ${yt - 9}, ${clx} ${yt - 9}
+    C 9 ${yt - 9}, 4.5 ${yt - 5.5}, 4.5 ${yt}
+    C 4.5 ${yt + 4}, ${notchL - 3} ${ym - 3}, ${notchL} ${ym}
+    Z
+  `.replace(/\s+/g, ' ').trim()
+}
+
 export default function GooeyNav({ onShopClick, isShopOpen }: GooeyNavProps) {
   const pathname = usePathname()
 
-  // Exactly 4 streamlined, high-converting options
+  // High-converting navigation ordered matching the landing page progression
   const navItems: NavItem[] = [
     { label: 'Shop Tower', href: '/products/sniff-solve-tower', hasDropdown: true },
+    { label: 'Features', href: '/#features' },
     {
       label: 'The 4 Levels',
       href: '/#levels',
@@ -96,22 +130,43 @@ export default function GooeyNav({ onShopClick, isShopOpen }: GooeyNavProps) {
       {/* Nav Capsule Bar */}
       <div
         ref={navRef}
-        className="relative flex items-center p-1.5 rounded-2xl bg-slate-100/90 border border-slate-200/90 shadow-inner"
-        style={{ filter: 'url(#gooey-nav-filter)' }}
+        className="relative flex items-center p-1.5 rounded-full bg-slate-100/95 border border-slate-200/90 shadow-inner"
         onMouseLeave={() => setHoverIndex(null)}
       >
-        {/* Animated Gooey Pill Blob */}
+        {/* Animated Dog Bone Background with authentic 4-lobe condyles & waist */}
         <div
-          className="absolute top-1.5 bottom-1.5 bg-white rounded-xl shadow-md transition-all duration-300 ease-out pointer-events-none"
+          className="absolute top-1/2 -translate-y-1/2 transition-all duration-300 ease-out pointer-events-none"
           style={{
             left: `${indicatorStyle.left}px`,
             width: `${indicatorStyle.width}px`,
+            height: '40px',
             opacity: indicatorStyle.opacity,
           }}
         >
-          {/* Subtle liquid droplet indicators */}
-          <div className="absolute -left-1.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white rounded-full opacity-90" />
-          <div className="absolute -right-1.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 bg-white rounded-full opacity-90" />
+          <svg
+            width={indicatorStyle.width || 120}
+            height="40"
+            viewBox={`0 0 ${indicatorStyle.width || 120} 40`}
+            className="w-full h-full overflow-visible"
+          >
+            <defs>
+              <filter id="bone-nav-shadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="0" dy="2" stdDeviation="2.5" floodColor="#0f172a" floodOpacity="0.12" />
+                <feDropShadow dx="0" dy="1" stdDeviation="1" floodColor="#0f172a" floodOpacity="0.08" />
+              </filter>
+              <linearGradient id="bone-nav-grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="#f8fafc" />
+              </linearGradient>
+            </defs>
+            <path
+              d={getBonePath(indicatorStyle.width || 120, 40)}
+              fill="url(#bone-nav-grad)"
+              stroke="#cbd5e1"
+              strokeWidth="1.2"
+              filter="url(#bone-nav-shadow)"
+            />
+          </svg>
         </div>
 
         {/* Navigation Items (Exactly 4) */}

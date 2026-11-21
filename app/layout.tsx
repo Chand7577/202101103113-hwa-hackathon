@@ -4,6 +4,7 @@ import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { CartProvider } from '@/lib/cart-context'
 import CartDrawer from '@/components/cart-drawer'
+import ScrollProgress from '@/components/scroll-progress'
 
 export const metadata: Metadata = {
   title: 'Sniff & Solve Tower™ | Premium Modular Dog Puzzle Tower',
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col font-sans antialiased bg-slate-50/50 text-slate-900">
         <CartProvider>
+          <ScrollProgress />
           <Navbar />
           <main className="flex-grow pt-24">{children}</main>
           <Footer />

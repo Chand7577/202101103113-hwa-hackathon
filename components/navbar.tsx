@@ -3,9 +3,11 @@
 import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { useCart } from '@/lib/cart-context'
 import GooeyNav from '@/components/gooey-nav'
+import SpecularButton from '@/components/specular-button'
 import {
   Menu,
   X,
@@ -24,10 +26,20 @@ import {
 export default function Navbar() {
   const [isMobileOpen, setIsMobileOpen] = useState(false)
   const [shopMenuOpen, setShopMenuOpen] = useState(false)
+  const [hasScrolled, setHasScrolled] = useState(false)
   const shopRef = useRef<HTMLDivElement>(null)
 
   const pathname = usePathname()
   const { totalItems, subtotal, setIsCartOpen } = useCart()
+
+  // Detect scroll for glass blur effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 20)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   // Close menus on route change
   useEffect(() => {
@@ -47,13 +59,17 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      hasScrolled 
+        ? 'bg-white/80 backdrop-blur-xl border-b border-slate-200/50 shadow-lg shadow-slate-900/5' 
+        : 'bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm'
+    }`}>
       {/* Top Value Banner */}
       <div className="bg-slate-900 text-slate-100 text-xs sm:text-[13px] py-2 px-4 font-semibold tracking-wide border-b border-slate-800">
         <div className="max-w-7xl mx-auto flex items-center justify-between sm:justify-center gap-4 sm:gap-8">
           <div className="flex items-center gap-2">
             <Truck className="w-4 h-4 text-blue-400" />
-            <span>Free Express Shipping on Orders Over $50</span>
+            <span>Free Express Shipping on Orders Over ₹500</span>
           </div>
           <span className="hidden sm:inline text-slate-600">•</span>
           <div className="hidden sm:flex items-center gap-2">
@@ -117,7 +133,7 @@ export default function Navbar() {
                         <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-100 px-2.5 py-0.5 rounded-full">
                           Flagship Puzzle
                         </span>
-                        <span className="text-xs font-bold text-slate-900">$69.00</span>
+                        <span className="text-xs font-bold text-slate-900">₹69.00</span>
                       </div>
                       <div className="w-full aspect-[4/3] bg-white rounded-xl border border-slate-200 p-2 flex items-center justify-center overflow-hidden mb-3">
                         <img
@@ -244,36 +260,43 @@ export default function Navbar() {
           {/* Right Action Icons & Direct Buy CTA */}
           <div className="flex items-center gap-3">
             
-            {/* Interactive Cart Button */}
+            {/* Interactive Cart Button: Icon-only with badge on top-right */}
             <button
               type="button"
               onClick={() => setIsCartOpen(true)}
-              className="relative h-11 px-3.5 rounded-2xl border border-slate-200/90 bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-blue-600 transition-all flex items-center gap-2 shadow-2xs"
-              aria-label="Open Shopping Cart"
+              className="relative w-11 h-11 rounded-2xl border border-slate-200/90 bg-slate-50 hover:bg-slate-100 text-slate-700 hover:text-blue-600 transition-all flex items-center justify-center shadow-2xs group"
+              aria-label={`Open Shopping Cart, ${totalItems} items`}
             >
-              <ShoppingBag className="w-5 h-5 text-slate-700" />
-              <span className="text-xs font-bold text-slate-900">
-                {totalItems > 0 ? `$${subtotal.toFixed(2)}` : 'Cart'}
-              </span>
-              {totalItems > 0 && (
-                <span className="bg-blue-600 text-white text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center ring-2 ring-white ml-0.5">
-                  {totalItems}
-                </span>
-              )}
+              <div className="relative flex items-center justify-center">
+                <ShoppingBag className="w-5 h-5 text-slate-700 group-hover:text-blue-600 transition-colors" />
+                {totalItems > 0 && (
+                  <span className="absolute -top-2.5 -right-2.5 min-w-[19px] h-[19px] px-1 bg-blue-600 text-white text-[10px] font-black rounded-full flex items-center justify-center ring-2 ring-white shadow-xs">
+                    {totalItems}
+                  </span>
+                )}
+              </div>
             </button>
 
-            {/* Direct Buy CTA */}
-            <Button
-              asChild
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-sm h-11 px-5 rounded-2xl shadow-md shadow-blue-500/25 hover:shadow-lg transition-all flex items-center gap-2"
-            >
-              <Link href="/products/sniff-solve-tower">
+            {/* Direct Buy CTA with SpecularButton */}
+            <Link href="/products/sniff-solve-tower" className="hidden sm:inline-flex">
+              <SpecularButton
+                size="md"
+                radius={16}
+                tint="#2563eb"
+                tintOpacity={1}
+                textColor="#ffffff"
+                lineColor="#bfdbfe"
+                baseColor="#1d4ed8"
+                intensity={1.2}
+                followMouse
+                proximity={200}
+                className="h-11 px-5 shadow-md shadow-blue-500/25 font-extrabold text-sm"
+              >
                 <span>Order Tower</span>
-                <span className="font-normal text-blue-200 text-xs">($69)</span>
+                <span className="font-normal text-blue-200 text-xs">(₹69)</span>
                 <ArrowRight className="w-4 h-4 ml-0.5" />
-              </Link>
-            </Button>
+              </SpecularButton>
+            </Link>
 
             {/* Mobile Hamburger Toggle */}
             <button
@@ -290,11 +313,23 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE DRAWER / FLYOUT (Aligned to 4 items) */}
-      {isMobileOpen && (
-        <div className="lg:hidden bg-white border-b border-slate-200 shadow-2xl px-5 pt-4 pb-8 space-y-4 animate-in slide-in-from-top-3 duration-200 max-h-[85vh] overflow-y-auto">
+      <AnimatePresence>
+        {isMobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+            className="lg:hidden bg-white border-b border-slate-200 shadow-2xl px-5 pt-4 pb-8 space-y-4 max-h-[85vh] overflow-y-auto"
+          >
           
           {/* Featured Product Preview */}
-          <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1, duration: 0.3 }}
+            className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3"
+          >
             <div className="w-16 h-16 rounded-xl bg-white border border-slate-200 p-1 flex items-center justify-center shrink-0">
               <img src="/images/sniff-solve-tower-hero.jpg" alt="Tower" className="w-full h-full object-cover rounded-lg" />
             </div>
@@ -305,16 +340,21 @@ export default function Navbar() {
               <h4 className="text-sm font-bold text-slate-900 truncate mt-0.5">
                 Sniff &amp; Solve Tower™
               </h4>
-              <p className="text-xs text-slate-500 font-semibold">$69.00 • Free Delivery</p>
+              <p className="text-xs text-slate-500 font-semibold">₹69.00 • Free Delivery</p>
             </div>
             <Button asChild size="sm" className="bg-blue-600 text-white text-xs px-3.5 h-9 rounded-xl">
               <Link href="/products/sniff-solve-tower" onClick={() => setIsMobileOpen(false)}>
                 View
               </Link>
             </Button>
-          </div>
+          </motion.div>
 
-          <div className="space-y-1">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15, duration: 0.3 }}
+            className="space-y-1"
+          >
             <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-3">
               Navigation
             </span>
@@ -324,7 +364,15 @@ export default function Navbar() {
               className="flex items-center justify-between px-3 py-3 rounded-xl text-slate-900 font-bold hover:bg-slate-50 text-sm"
             >
               <span>Shop Tower</span>
-              <span className="text-xs font-semibold text-blue-600">$69.00</span>
+              <span className="text-xs font-semibold text-blue-600">₹69.00</span>
+            </Link>
+            <Link
+              href="/#features"
+              onClick={() => setIsMobileOpen(false)}
+              className="flex items-center gap-2 px-3 py-3 rounded-xl text-slate-700 font-semibold hover:bg-slate-50 text-sm"
+            >
+              <Sparkles className="w-4 h-4 text-blue-600" />
+              <span>Features</span>
             </Link>
             <Link
               href="/#levels"
@@ -351,9 +399,14 @@ export default function Navbar() {
                 4.9 ★ (2,450+)
               </span>
             </Link>
-          </div>
+          </motion.div>
 
-          <div className="pt-2 border-t border-slate-100 space-y-2.5">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.3 }}
+            className="pt-2 border-t border-slate-100 space-y-2.5"
+          >
             <Link
               href="/cart"
               onClick={() => setIsMobileOpen(false)}
@@ -364,7 +417,7 @@ export default function Navbar() {
                 <span>Shopping Cart</span>
               </div>
               <span className="text-xs bg-white px-2.5 py-0.5 rounded-full border border-slate-200 font-bold">
-                {totalItems} items (${subtotal.toFixed(2)})
+                {totalItems} items (₹{subtotal.toFixed(2)})
               </span>
             </Link>
 
@@ -374,22 +427,28 @@ export default function Navbar() {
               onClick={() => setIsMobileOpen(false)}
             >
               <Link href="/products/sniff-solve-tower">
-                Get Sniff &amp; Solve Tower — $69
+                Get Sniff &amp; Solve Tower — ₹69
               </Link>
             </Button>
-          </div>
+          </motion.div>
 
-          <div className="pt-2 flex items-center justify-around text-center text-[11px] text-slate-500 font-medium">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25, duration: 0.3 }}
+            className="pt-2 flex items-center justify-around text-center text-[11px] text-slate-500 font-medium"
+          >
             <span className="flex items-center gap-1">
               <Truck className="w-3.5 h-3.5 text-blue-600" /> Free Shipping
             </span>
             <span className="flex items-center gap-1">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> 30-Day Guarantee
             </span>
-          </div>
+          </motion.div>
 
-        </div>
-      )}
+        </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

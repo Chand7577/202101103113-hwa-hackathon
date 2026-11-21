@@ -211,25 +211,23 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div className="bg-slate-50/50 min-h-screen pb-28">
+    <div className="bg-slate-50/50 min-h-screen pb-28 pt-32">
       
-      {/* Breadcrumb Navigation */}
-      <div className="bg-white border-b border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5">
-          <nav className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-            <Link href="/" className="hover:text-blue-600 transition-colors">
-              Home
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <Link href="/products" className="hover:text-blue-600 transition-colors">
-              Interactive Puzzles
-            </Link>
-            <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <span className="text-slate-900 font-semibold truncate">
-              Sniff &amp; Solve Tower™
-            </span>
-          </nav>
-        </div>
+      {/* Breadcrumb Navigation - Seamlessly integrated */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <nav className="flex items-center gap-2 text-sm text-slate-600 font-semibold">
+          <Link href="/" className="hover:text-blue-600 transition-colors">
+            Home
+          </Link>
+          <ChevronRight className="w-4 h-4 text-slate-400" />
+          <Link href="/products" className="hover:text-blue-600 transition-colors">
+            Interactive Puzzles
+          </Link>
+          <ChevronRight className="w-4 h-4 text-slate-400" />
+          <span className="text-slate-900 font-bold truncate">
+            Sniff &amp; Solve Tower™
+          </span>
+        </nav>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 lg:pt-12">
@@ -284,7 +282,7 @@ export default function ProductDetailPage() {
               <div className="p-3 bg-white rounded-xl border border-slate-200 text-center space-y-1">
                 <Truck className="w-5 h-5 text-blue-600 mx-auto" />
                 <p className="text-xs font-bold text-slate-900">Free Shipping</p>
-                <p className="text-[10px] text-slate-500">Orders over $50</p>
+                <p className="text-[10px] text-slate-500">Orders over ₹500</p>
               </div>
               <div className="p-3 bg-white rounded-xl border border-slate-200 text-center space-y-1">
                 <RotateCcw className="w-5 h-5 text-emerald-600 mx-auto" />
@@ -339,10 +337,10 @@ export default function ProductDetailPage() {
             {/* Price Card */}
             <div className="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-sm space-y-1.5">
               <div className="flex items-baseline gap-3">
-                <span className="text-3xl font-black text-slate-900">$69.00</span>
-                <span className="text-lg text-slate-400 line-through font-medium">$89.00</span>
+                <span className="text-3xl font-black text-slate-900">₹69.00</span>
+                <span className="text-lg text-slate-400 line-through font-medium">₹89.00</span>
                 <span className="text-xs font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
-                  Save $20 (22% OFF)
+                  Save ₹20 (22% OFF)
                 </span>
               </div>
               <p className="text-xs text-slate-600 font-medium">
@@ -411,7 +409,7 @@ export default function ProductDetailPage() {
                   className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold h-11 rounded-xl shadow-md shadow-blue-500/20 hover:shadow-lg transition-all flex items-center justify-center gap-2"
                 >
                   <ShoppingCart className="w-4 h-4" />
-                  <span>Add to Cart — ${(69 * qty).toFixed(2)}</span>
+                  <span>Add to Cart — ₹{(69 * qty).toFixed(2)}</span>
                 </Button>
               </div>
 

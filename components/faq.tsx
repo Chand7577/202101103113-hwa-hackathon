@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ChevronDown, HelpCircle } from 'lucide-react'
+import AnimatedContent from '@/components/animated-content'
 
 const faqItems = [
   {
@@ -56,7 +57,15 @@ export default function FAQ() {
         </div>
 
         {/* Accordion List */}
-        <div className="space-y-3.5">
+        <AnimatedContent
+          distance={50}
+          direction="vertical"
+          duration={0.7}
+          stagger={0.08}
+          ease="power3.out"
+          threshold={0.1}
+          className="space-y-3.5"
+        >
           {faqItems.map((item, idx) => {
             const isOpen = openIndex === idx
             return (
@@ -86,7 +95,7 @@ export default function FAQ() {
               </div>
             )
           })}
-        </div>
+        </AnimatedContent>
 
       </div>
     </section>

@@ -205,7 +205,7 @@ export default function LevelsShowcase() {
               <div className="pt-4 flex flex-wrap items-center gap-4">
                 <Button asChild className="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl">
                   <Link href="/products/sniff-solve-tower" className="flex items-center gap-2">
-                    <span>Order Complete 4-Level Tower ($69)</span>
+                    <span>Order Complete 4-Level Tower (₹69)</span>
                     <ArrowRight className="w-4 h-4" />
                   </Link>
                 </Button>

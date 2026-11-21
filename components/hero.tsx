@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { useCart, DEFAULT_PRODUCT } from '@/lib/cart-context'
-import FadeContent from '@/components/fade-content'
 import {
   ArrowRight,
   ShieldCheck,
@@ -36,11 +36,10 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto w-full flex flex-col justify-between h-full py-1">
         
         {/* TOP: Compact Headline & Eyebrow */}
-        <FadeContent
-          trigger="mount"
-          duration={0.7}
-          effect="focus"
-          blur={true}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
           className="text-center max-w-2xl mx-auto space-y-1 sm:space-y-1.5 shrink-0"
         >
           <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-[11px] font-bold shadow-2xs">
@@ -58,16 +57,14 @@ export default function Hero() {
           <p className="text-xs sm:text-[13px] text-slate-500 max-w-lg mx-auto leading-snug">
             The modular 4-tier puzzle tower that turns anxious alone-time into calm, independent mental focus. No pacing. No barking. Zero chewed furniture.
           </p>
-        </FadeContent>
+        </motion.div>
 
         {/* CENTER: Compact Hero Grid (Photo + 4 Surrounding Cards) */}
         <div className="my-auto py-2">
-          <FadeContent
-            trigger="mount"
-            duration={0.8}
-            delay={0.15}
-            effect="focus"
-            blur={true}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.4, 0, 0.2, 1] }}
             className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-center max-w-5xl mx-auto"
           >
             {/* LEFT COLUMN: 2 Cards (3 cols) */}
@@ -121,7 +118,17 @@ export default function Hero() {
 
             {/* CENTER COLUMN: Central Product Photo (6 cols) */}
             <div className="lg:col-span-6 flex flex-col items-center justify-center order-1 lg:order-2">
-              <div className="relative w-52 h-52 sm:w-60 sm:h-60 lg:w-[270px] lg:h-[270px] rounded-3xl bg-white p-3 border border-slate-200/90 shadow-xl overflow-hidden group">
+              <motion.div
+                animate={{ 
+                  y: [0, -8, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative w-52 h-52 sm:w-60 sm:h-60 lg:w-[270px] lg:h-[270px] rounded-3xl bg-white/80 backdrop-blur-lg p-3 border border-slate-200/60 shadow-2xl shadow-slate-900/10 overflow-hidden group"
+              >
                 {/* Product Image */}
                 <img
                   src="/images/sniff-solve-tower-hero.jpg"
@@ -138,7 +145,7 @@ export default function Hero() {
                 <div className="absolute bottom-3 right-3 bg-slate-900/90 text-white backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wide">
                   $69.00 • Free Delivery
                 </div>
-              </div>
+              </motion.div>
 
               {/* Rating Pill */}
               <div className="flex items-center gap-1.5 mt-2 px-3 py-1 rounded-full bg-white/90 border border-slate-200 shadow-2xs text-[11px] font-bold text-slate-700">
@@ -202,15 +209,14 @@ export default function Hero() {
               </div>
             </div>
 
-          </FadeContent>
+          </motion.div>
         </div>
 
         {/* BOTTOM: Compact CTA & Price Pill Bar */}
-        <FadeContent
-          trigger="mount"
-          duration={0.7}
-          delay={0.25}
-          effect="fade"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4, ease: [0.4, 0, 0.2, 1] }}
           className="shrink-0 max-w-xl mx-auto w-full pt-1"
         >
           <div className="p-3 rounded-2xl bg-white border border-slate-200/90 shadow-md flex items-center justify-between gap-4">
@@ -231,7 +237,7 @@ export default function Hero() {
               <Button
                 asChild
                 size="sm"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs h-9 px-5 rounded-xl shadow-xs transition-all flex items-center gap-1.5"
+                className="relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs h-9 px-5 rounded-xl shadow-xs transition-all flex items-center gap-1.5 before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full hover:before:animate-shimmer"
               >
                 <Link href="/products/sniff-solve-tower">
                   <span>Order Tower</span>
@@ -272,7 +278,7 @@ export default function Hero() {
               <ShieldCheck className="w-3 h-3 text-indigo-500" /> 100% Non-Toxic Polymer
             </span>
           </div>
-        </FadeContent>
+        </motion.div>
 
       </div>
     </section>

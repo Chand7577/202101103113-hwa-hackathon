@@ -3,6 +3,7 @@
 import { Sparkles, RotateCw, ArrowRight, Clock, Home, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import AnimatedContent from '@/components/animated-content'
 
 const loopSteps = [
   {
@@ -134,7 +135,15 @@ export default function HowItWorks() {
         </div>
 
         {/* 3 Step Cards */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 relative mb-16">
+        <AnimatedContent
+          distance={70}
+          direction="vertical"
+          duration={0.8}
+          stagger={0.12}
+          ease="power3.out"
+          threshold={0.1}
+          className="grid md:grid-cols-3 gap-6 lg:gap-8 relative mb-16"
+        >
           {loopSteps.map((item, idx) => (
             <div
               key={idx}
@@ -172,7 +181,7 @@ export default function HowItWorks() {
               </div>
             </div>
           ))}
-        </div>
+        </AnimatedContent>
 
         {/* WHILE YOU'RE AWAY TIMELINE */}
         <div className="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-sm space-y-8">
@@ -188,7 +197,15 @@ export default function HowItWorks() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+          <AnimatedContent
+            distance={60}
+            direction="vertical"
+            duration={0.8}
+            stagger={0.1}
+            ease="power3.out"
+            threshold={0.1}
+            className="grid grid-cols-1 md:grid-cols-4 gap-6 relative"
+          >
             {awayTimeline.map((item, idx) => (
               <div
                 key={idx}
@@ -217,26 +234,7 @@ export default function HowItWorks() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Bottom Banner */}
-        <div className="mt-14 p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/90 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center sm:text-left">
-            <h4 className="text-lg font-bold text-slate-900">
-              Give your pup the gift of peaceful alone-time.
-            </h4>
-            <p className="text-sm text-slate-600">
-              Order today with Free Express Shipping and our 30-Day Money-Back Guarantee.
-            </p>
-          </div>
-
-          <Button asChild size="lg" className="bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shrink-0">
-            <Link href="/products/sniff-solve-tower" className="flex items-center gap-2">
-              <span>Get the Tower — $69.00</span>
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </Button>
+          </AnimatedContent>
         </div>
 
       </div>

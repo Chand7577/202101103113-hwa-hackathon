@@ -370,7 +370,7 @@ export default function CheckoutPage() {
                       </div>
                     </div>
                     <span className="text-sm font-bold text-emerald-600">
-                      {freeShipping ? 'FREE' : '$7.99'}
+                      {freeShipping ? 'FREE' : '₹49.00'}
                     </span>
                   </label>
 
@@ -399,7 +399,7 @@ export default function CheckoutPage() {
                         </span>
                       </div>
                     </div>
-                    <span className="text-sm font-bold text-slate-900">$14.99</span>
+                    <span className="text-sm font-bold text-slate-900">₹149.00</span>
                   </label>
                 </div>
               </div>
@@ -505,7 +505,7 @@ export default function CheckoutPage() {
                 ) : (
                   <>
                     <Lock className="w-4 h-4" />
-                    <span>Pay ${calculatedTotal.toFixed(2)} &amp; Place Order</span>
+                    <span>Pay ₹{calculatedTotal.toFixed(2)} &amp; Place Order</span>
                     <ArrowRight className="w-4 h-4 ml-1" />
                   </>
                 )}
@@ -549,11 +549,11 @@ export default function CheckoutPage() {
                         {item.tierDescription || '4-Level Modular Set'}
                       </p>
                       <span className="text-xs font-semibold text-blue-600">
-                        ${item.price.toFixed(2)} each
+                        ₹{item.price.toFixed(2)} each
                       </span>
                     </div>
                     <span className="text-sm font-bold text-slate-900">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₹{(item.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 ))}
@@ -564,7 +564,7 @@ export default function CheckoutPage() {
                 <div className="flex justify-between text-slate-600">
                   <span>Subtotal</span>
                   <span className="font-semibold text-slate-900">
-                    ${currentSubtotal.toFixed(2)}
+                    ₹{currentSubtotal.toFixed(2)}
                   </span>
                 </div>
 
@@ -574,7 +574,7 @@ export default function CheckoutPage() {
                     {shippingCost === 0 ? (
                       <span className="text-emerald-600 font-bold">FREE</span>
                     ) : (
-                      `$${shippingCost.toFixed(2)}`
+                      `₹${shippingCost.toFixed(2)}`
                     )}
                   </span>
                 </div>
@@ -582,14 +582,14 @@ export default function CheckoutPage() {
                 <div className="flex justify-between text-slate-600">
                   <span>Estimated Sales Tax</span>
                   <span className="font-semibold text-slate-900">
-                    ${taxCost.toFixed(2)}
+                    ₹{taxCost.toFixed(2)}
                   </span>
                 </div>
 
                 <div className="border-t border-slate-200 pt-3 flex justify-between items-baseline font-bold">
                   <span className="text-base text-slate-900">Total</span>
                   <span className="text-2xl font-black text-blue-600">
-                    ${calculatedTotal.toFixed(2)}
+                    ₹{calculatedTotal.toFixed(2)}
                   </span>
                 </div>
               </div>

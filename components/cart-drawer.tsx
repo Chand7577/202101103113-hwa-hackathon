@@ -69,7 +69,7 @@ export default function CartDrawer() {
               <Truck className="w-3.5 h-3.5 text-primary" />
               {subtotal >= freeShippingThreshold
                 ? '🎉 You unlocked Free Express Shipping!'
-                : `Add $${freeShippingDiff.toFixed(2)} more for FREE shipping`}
+                : `Add ₹${freeShippingDiff.toFixed(2)} more for FREE shipping`}
             </span>
             <span className="text-muted-foreground">{Math.round(freeShippingProgress)}%</span>
           </div>
@@ -134,11 +134,11 @@ export default function CartDrawer() {
                     )}
                     <div className="mt-1 flex items-baseline gap-2">
                       <span className="text-sm font-bold text-primary">
-                        ${item.price.toFixed(2)}
+                        ₹{item.price.toFixed(2)}
                       </span>
                       {item.originalPrice && (
                         <span className="text-xs text-muted-foreground line-through">
-                          ${item.originalPrice.toFixed(2)}
+                          ₹{item.originalPrice.toFixed(2)}
                         </span>
                       )}
                     </div>
@@ -165,7 +165,7 @@ export default function CartDrawer() {
                       </button>
                     </div>
                     <span className="text-sm font-semibold text-foreground">
-                      ${(item.price * item.quantity).toFixed(2)}
+                      ₹{(item.price * item.quantity).toFixed(2)}
                     </span>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ export default function CartDrawer() {
             <div className="space-y-1.5 text-sm">
               <div className="flex justify-between text-muted-foreground">
                 <span>Subtotal</span>
-                <span className="font-medium text-foreground">${subtotal.toFixed(2)}</span>
+                <span className="font-medium text-foreground">₹{subtotal.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-muted-foreground">
                 <span>Shipping</span>
@@ -188,13 +188,13 @@ export default function CartDrawer() {
                   {shipping === 0 ? (
                     <span className="text-emerald-600 font-semibold">FREE</span>
                   ) : (
-                    `$${shipping.toFixed(2)}`
+                    `₹${shipping.toFixed(2)}`
                   )}
                 </span>
               </div>
               <div className="border-t border-border pt-2 flex justify-between font-bold text-base text-foreground">
                 <span>Total</span>
-                <span className="text-primary">${total.toFixed(2)}</span>
+                <span className="text-primary">₹{total.toFixed(2)}</span>
               </div>
             </div>
 
