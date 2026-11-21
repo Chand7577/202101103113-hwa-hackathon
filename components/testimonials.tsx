@@ -45,27 +45,23 @@ const reviews = [
   },
 ]
 
-// Duplicate for seamless infinite loop — 3x ensures no gap at any screen width
-const TRACK = [...reviews, ...reviews, ...reviews]
-
-// Card width + gap in px — must match the inline styles below
-const CARD_W = 400
-const GAP = 32
-// Width of one full set (the distance we scroll before looping)
-const ONE_SET_PX = reviews.length * (CARD_W + GAP)
+// Duplicate array for seamless infinite marquee loop (50% translation)
+const DUAL_TRACK = [...reviews, ...reviews]
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 lg:py-28 bg-white border-t border-slate-200/80 overflow-hidden">
+    <section id="testimonials" className="py-16 sm:py-20 lg:py-28 bg-white border-t border-slate-200/80 overflow-hidden">
 
-      {/* Pure-CSS keyframe — no JS setState, renders at native 60/120fps */}
+      {/* Pure-CSS keyframe — responsive percentage translation, 60/120fps */}
       <style>{`
         @keyframes marquee-scroll {
           from { transform: translateX(0); }
-          to   { transform: translateX(-${ONE_SET_PX}px); }
+          to   { transform: translateX(-50%); }
         }
         .marquee-track {
-          animation: marquee-scroll 40s linear infinite;
+          display: flex;
+          width: max-content;
+          animation: marquee-scroll 45s linear infinite;
           will-change: transform;
         }
         .marquee-track:hover {
@@ -73,79 +69,75 @@ export default function Testimonials() {
         }
       `}</style>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-12">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">
             <ShieldCheck className="w-3.5 h-3.5" />
             Loved By 2,400+ Dogs &amp; Pet Parents
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
             Real Results From Real Paws
           </h2>
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-2 flex-wrap">
             <div className="flex text-amber-400">
               {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 fill-current" />
+                <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 fill-current" />
               ))}
             </div>
-            <span className="font-bold text-slate-900 text-sm">4.9 out of 5 stars</span>
-            <span className="text-slate-400 text-sm">•</span>
-            <span className="text-slate-600 text-sm">Over 98% satisfaction rating</span>
+            <span className="font-bold text-slate-900 text-xs sm:text-sm">4.9 out of 5 stars</span>
+            <span className="text-slate-400 text-xs sm:text-sm">•</span>
+            <span className="text-slate-600 text-xs sm:text-sm">Over 98% satisfaction rating</span>
           </div>
         </div>
       </div>
 
       {/* Full-bleed marquee */}
       <div className="relative w-full overflow-hidden">
-        {/* Left fade */}
+        {/* Left fade - compact on mobile so cards are never obscured */}
         <div
-          className="pointer-events-none absolute left-0 top-0 bottom-0 w-20 z-10"
+          className="pointer-events-none absolute left-0 top-0 bottom-0 w-6 sm:w-16 lg:w-20 z-10"
           style={{ background: 'linear-gradient(to right, white, transparent)' }}
         />
         {/* Right fade */}
         <div
-          className="pointer-events-none absolute right-0 top-0 bottom-0 w-20 z-10"
+          className="pointer-events-none absolute right-0 top-0 bottom-0 w-6 sm:w-16 lg:w-20 z-10"
           style={{ background: 'linear-gradient(to left, white, transparent)' }}
         />
 
-        <div
-          className="marquee-track flex"
-          style={{ gap: GAP, paddingLeft: 24, paddingRight: 24 }}
-        >
-          {TRACK.map((r, idx) => (
+        <div className="marquee-track gap-4 sm:gap-6 lg:gap-8 px-3 sm:px-6">
+          {DUAL_TRACK.map((r, idx) => (
             <div
               key={idx}
-              className="flex-shrink-0 p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow"
-              style={{ width: CARD_W }}
+              className="w-[280px] sm:w-[350px] lg:w-[400px] flex-shrink-0 p-5 sm:p-7 rounded-3xl bg-slate-50 border border-slate-200/90 shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <div className="flex text-amber-400">
                     {[...Array(r.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-current" />
+                      <Star key={i} className="w-3.5 sm:w-4 h-3.5 sm:h-4 fill-current" />
                     ))}
                   </div>
-                  <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                  <span className="text-[10px] sm:text-[11px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
                     <CheckCircle2 className="w-3 h-3" />
                     Verified Owner
                   </span>
                 </div>
 
-                <h4 className="text-base font-bold text-slate-900 mb-2 leading-snug">
+                <h4 className="text-sm sm:text-base font-bold text-slate-900 mb-2 leading-snug">
                   &ldquo;{r.title}&rdquo;
                 </h4>
 
-                <p className="text-sm text-slate-600 leading-relaxed flex-1">
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed flex-1">
                   {r.text}
                 </p>
 
-                <div className="pt-4 mt-4 border-t border-slate-200/70 flex items-center justify-between">
+                <div className="pt-3 sm:pt-4 mt-3 sm:mt-4 border-t border-slate-200/70 flex items-center justify-between">
                   <div>
-                    <h5 className="text-sm font-bold text-slate-900">{r.name}</h5>
-                    <p className="text-xs text-slate-500">{r.dog}</p>
+                    <h5 className="text-xs sm:text-sm font-bold text-slate-900">{r.name}</h5>
+                    <p className="text-[11px] sm:text-xs text-slate-500">{r.dog}</p>
                   </div>
-                  <span className="text-xs font-semibold text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md whitespace-nowrap">
+                  <span className="text-[11px] sm:text-xs font-semibold text-blue-700 bg-blue-50 px-2 sm:px-2.5 py-1 rounded-md whitespace-nowrap">
                     {r.duration}
                   </span>
                 </div>

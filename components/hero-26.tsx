@@ -85,10 +85,9 @@ export default function Hero26() {
         minHeight: 'calc(100vh - 5rem)',
       }}
     >
-      {/* ── Huge raw image — RIGHT half, bleeding to edge ── */}
-      {/* This sits behind everything on the right */}
+      {/* ── Huge raw image — RIGHT half, bleeding to edge (Desktop Only) ── */}
       <div
-        className="absolute top-0 bottom-0 right-0 pointer-events-none"
+        className="hidden lg:block absolute top-0 bottom-0 right-0 pointer-events-none"
         style={{ width: '55%' }}
       >
         {/* Fade-left mask so image blends into the dark bg on its left edge */}
@@ -124,7 +123,7 @@ export default function Hero26() {
             Independent Canine Enrichment
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-black text-white tracking-tight leading-[1.08]">
+          <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-black text-white tracking-tight leading-[1.08]">
             Keeps your dog<br />
             <span className="inline-flex items-center mt-1">
               <RotatingText
@@ -142,7 +141,7 @@ export default function Hero26() {
                 staggerDuration={0.02}
                 splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1"
                 rotationInterval={2600}
-                mainClassName="rounded-2xl px-3 py-1 font-black text-white"
+                mainClassName="rounded-2xl px-2.5 sm:px-3 py-0.5 sm:py-1 font-black text-white text-2xl sm:text-4xl lg:text-[50px] inline-block"
               />
             </span>
           </h1>
@@ -213,6 +212,21 @@ export default function Hero26() {
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             Dogs in 38+ countries are using it right now
           </div>
+
+          {/* Dedicated mobile product visual showcase */}
+          <div className="lg:hidden relative w-full flex flex-col items-center justify-center pt-2 pb-2">
+            <div className="relative w-full max-w-[270px] aspect-square flex items-center justify-center">
+              <div
+                className="absolute inset-0 rounded-full blur-3xl opacity-30 pointer-events-none"
+                style={{ background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)' }}
+              />
+              <img
+                src="/images/sniff-solve-tower-hero.jpg"
+                alt="Sniff & Solve Tower"
+                className="relative z-10 w-full h-full object-contain drop-shadow-[0_16px_36px_rgba(0,0,0,0.7)]"
+              />
+            </div>
+          </div>
         </div>
 
         {/* RIGHT: C-arc feature cards only — image is behind via absolute */}
@@ -276,30 +290,39 @@ export default function Hero26() {
         </div>
       </div>
 
-      {/* Mobile feature list */}
-      <div className="lg:hidden relative z-20 w-full px-6 pb-10 flex flex-col gap-2.5">
-        {FEATURES.map((f, i) => {
-          const Icon = f.icon
-          return (
-            <div
-              key={i}
-              className="flex items-center gap-3 p-3 rounded-2xl"
-              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.07)' }}
-            >
+      {/* Mobile feature grid */}
+      <div className="lg:hidden relative z-20 w-full px-6 pb-12">
+        <div className="grid grid-cols-2 gap-2.5">
+          {FEATURES.map((f, i) => {
+            const Icon = f.icon
+            const isLast = i === FEATURES.length - 1
+            return (
               <div
-                className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0"
-                style={{ background: `${f.accent}18`, border: `1px solid ${f.accent}30` }}
+                key={i}
+                className={`flex items-start gap-2.5 p-3 rounded-2xl ${isLast ? 'col-span-2' : ''}`}
+                style={{
+                  background: 'rgba(255,255,255,0.04)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  backdropFilter: 'blur(12px)',
+                }}
               >
-                <Icon className="w-4 h-4" style={{ color: f.accent }} />
+                <div
+                  className="w-8 h-8 rounded-xl flex items-center justify-center shrink-0 mt-0.5"
+                  style={{ background: `${f.accent}18`, border: `1px solid ${f.accent}30` }}
+                >
+                  <Icon className="w-4 h-4" style={{ color: f.accent }} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-baseline gap-1 flex-wrap">
+                    <span className="text-sm font-black text-white">{f.value}</span>
+                    <span className="text-[10px] text-slate-400 font-medium">{f.sub}</span>
+                  </div>
+                  <p className="text-[10px] text-slate-400 mt-0.5 leading-snug line-clamp-2">{f.desc}</p>
+                </div>
               </div>
-              <div>
-                <span className="text-sm font-black text-white">{f.value} </span>
-                <span className="text-[10px] text-slate-500">{f.sub}</span>
-                <p className="text-[10px] text-slate-400 mt-0.5">{f.desc}</p>
-              </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
     </section>
   )
