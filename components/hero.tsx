@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useCart, DEFAULT_PRODUCT } from '@/lib/cart-context'
+import FadeContent from '@/components/fade-content'
 import {
   ArrowRight,
   ShieldCheck,
@@ -15,7 +16,6 @@ import {
   Brain,
   ShoppingCart,
   Home,
-  CheckCircle2,
 } from 'lucide-react'
 
 export default function Hero() {
@@ -36,7 +36,13 @@ export default function Hero() {
       <div className="max-w-6xl mx-auto w-full flex flex-col justify-between h-full py-1">
         
         {/* TOP: Compact Headline & Eyebrow */}
-        <div className="text-center max-w-2xl mx-auto space-y-1 sm:space-y-1.5 shrink-0">
+        <FadeContent
+          trigger="mount"
+          duration={0.7}
+          effect="focus"
+          blur={true}
+          className="text-center max-w-2xl mx-auto space-y-1 sm:space-y-1.5 shrink-0"
+        >
           <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-blue-50 border border-blue-200/80 text-blue-700 text-[11px] font-bold shadow-2xs">
             <Home className="w-3.5 h-3.5 text-blue-600" />
             <span>Independent Canine Solo Enrichment</span>
@@ -52,12 +58,18 @@ export default function Hero() {
           <p className="text-xs sm:text-[13px] text-slate-500 max-w-lg mx-auto leading-snug">
             The modular 4-tier puzzle tower that turns anxious alone-time into calm, independent mental focus. No pacing. No barking. Zero chewed furniture.
           </p>
-        </div>
+        </FadeContent>
 
         {/* CENTER: Compact Hero Grid (Photo + 4 Surrounding Cards) */}
         <div className="my-auto py-2">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-center max-w-5xl mx-auto">
-            
+          <FadeContent
+            trigger="mount"
+            duration={0.8}
+            delay={0.15}
+            effect="focus"
+            blur={true}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-4 items-center max-w-5xl mx-auto"
+          >
             {/* LEFT COLUMN: 2 Cards (3 cols) */}
             <div className="lg:col-span-3 space-y-2.5 order-2 lg:order-1">
               {/* TOP LEFT CARD */}
@@ -190,11 +202,17 @@ export default function Hero() {
               </div>
             </div>
 
-          </div>
+          </FadeContent>
         </div>
 
         {/* BOTTOM: Compact CTA & Price Pill Bar */}
-        <div className="shrink-0 max-w-xl mx-auto w-full pt-1">
+        <FadeContent
+          trigger="mount"
+          duration={0.7}
+          delay={0.25}
+          effect="fade"
+          className="shrink-0 max-w-xl mx-auto w-full pt-1"
+        >
           <div className="p-3 rounded-2xl bg-white border border-slate-200/90 shadow-md flex items-center justify-between gap-4">
             <div className="space-y-0.5 pl-1">
               <div className="flex items-baseline gap-2">
@@ -254,7 +272,7 @@ export default function Hero() {
               <ShieldCheck className="w-3 h-3 text-indigo-500" /> 100% Non-Toxic Polymer
             </span>
           </div>
-        </div>
+        </FadeContent>
 
       </div>
     </section>
