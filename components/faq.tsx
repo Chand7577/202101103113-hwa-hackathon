@@ -1,3 +1,5 @@
+import { Card, CardContent } from '@/components/ui/card'
+
 const faqs = [
   {
     q: 'Is it safe for puppies?',
@@ -19,23 +21,20 @@ const faqs = [
 
 export default function FAQ() {
   return (
-    <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+    <section id="faq" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted">
       <div className="max-w-3xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Frequently asked questions</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Frequently asked questions</h2>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-3">
           {faqs.map((faq, idx) => (
-            <div key={idx} className="card p-6">
-              <button className="w-full flex items-center justify-between text-left">
-                <h3 className="text-lg font-bold text-gray-900">{faq.q}</h3>
-                <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              <p className="mt-4 text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-            </div>
+            <Card key={idx} className="border-border hover:border-primary/30 transition-all duration-300">
+              <CardContent className="py-6">
+                <h3 className="text-lg font-bold text-foreground mb-2">{faq.q}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{faq.a}</p>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </div>

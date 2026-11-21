@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ArrowRight, PawPrint } from 'lucide-react'
 
 const steps = [
   {
@@ -14,29 +15,36 @@ const steps = [
   {
     number: '03',
     title: 'Watch them solve',
-    description: 'Watch your dog flip, spin and sniff their way to treats.'
+    description: 'Your dog flips, spins and sniffs their way to treats.',
   },
 ]
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8">
+    <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Simple to use</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="text-3xl lg:text-4xl font-bold text-foreground mb-4">Simple to use</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Three steps to a happier, more engaged pup.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="relative grid md:grid-cols-3 gap-8">
+          {/* Connecting lines between steps */}
+          <div className="hidden md:block absolute top-1/2 left-0 right-0 -z-10">
+            <div className="h-[1px] w-full bg-border mx-auto max-w-[calc(100%-4rem)]" />
+          </div>
+
           {steps.map((step, idx) => (
-            <div key={idx} className="text-center">
-              <div className="w-12 h-12 bg-brand-100 rounded-full flex items-center justify-center mx-auto mb-6 text-brand-600 font-bold text-lg">
+            <div key={idx} className="text-center relative">
+              <div className={`mx-auto mb-8 relative z-10 w-16 h-16 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-bold text-lg shadow-lg shadow-primary/20 border border-primary/30`}>
                 {step.number}
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{step.description}</p>
+              <h3 className="text-xl font-bold text-foreground mb-3">{step.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed max-w-xs mx-auto">
+                {step.description}
+              </p>
             </div>
           ))}
         </div>
