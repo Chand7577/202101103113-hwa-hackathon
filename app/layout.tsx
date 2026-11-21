@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-
-const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })
+import { CartProvider } from '@/lib/cart-context'
+import CartDrawer from '@/components/cart-drawer'
 
 export const metadata: Metadata = {
-  title: 'Sniff & Solve Tower | The Ultimate Dog Puzzle Tower',
-  description: 'A tall modular puzzle tower with flaps, spinning parts and hidden treats that keeps dogs engaged for hours.',
+  title: 'Sniff & Solve Tower™ | Premium Modular Dog Puzzle Tower',
+  description:
+    'The 4-tier modular dog puzzle tower designed to beat boredom, slow down fast eaters, and provide hours of mental stimulation with interactive flaps, spinners, and hidden treats.',
 }
 
 export default function RootLayout({
@@ -17,11 +17,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+    <html lang="en">
+      <body className="min-h-screen flex flex-col font-sans antialiased bg-slate-50/50 text-slate-900">
+        <CartProvider>
+          <Navbar />
+          <main className="flex-grow pt-28">{children}</main>
+          <Footer />
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   )
