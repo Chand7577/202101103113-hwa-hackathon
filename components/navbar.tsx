@@ -67,7 +67,7 @@ export default function Navbar() {
     }`}>
       {/* Top Value Banner */}
       <div className="bg-slate-900 text-slate-100 text-xs sm:text-[13px] py-2 px-4 font-semibold tracking-wide border-b border-slate-800">
-        <div className="max-w-7xl mx-auto flex items-center justify-between sm:justify-center gap-4 sm:gap-8">
+        <div className="max-w-[92rem] mx-auto flex items-center justify-between sm:justify-center gap-4 sm:gap-8">
           <div className="flex items-center gap-2">
             <Truck className="w-4 h-4 text-blue-400" />
             <span>Free Express Shipping on Orders Over ₹500</span>
@@ -86,7 +86,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Navbar Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[92rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           
           {/* Brand Logo with Dog's Face */}
